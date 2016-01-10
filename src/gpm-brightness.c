@@ -359,7 +359,7 @@ gpm_brightness_output_down (GpmBrightness *brightness, RROutput output)
 		return TRUE;
 	}
 	step = gpm_brightness_get_step ((max-min)+1);
-	if (cur < step) {
+	if (cur < step+min) {
 		egg_debug ("truncating to %i", min);
 		cur = min;
 	} else {
