@@ -303,6 +303,12 @@ gpm_brightness_output_get_limits (GpmBrightness *brightness, RROutput output,
 	}
 	*min = info->values[0];
 	*max = info->values[1];
+	// FIXME: THIS IS A HACK
+	// The intel_backlight backend turns the backlight off on my laptop
+	// when reaching 0.
+	if (*min < 1 && *max >= 100) {
+		*min = 1;
+	}
 out:
 	XFree (info);
 	return ret;
